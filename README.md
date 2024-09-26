@@ -1,4 +1,6 @@
 # aide
+[![Go Reference](https://pkg.go.dev/badge/github.com/miajio/aide.svg)](https://pkg.go.dev/github.com/miajio/aide)
+
 golang common util aide
 
 # Install
