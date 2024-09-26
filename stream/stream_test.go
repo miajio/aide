@@ -3,7 +3,7 @@ package stream_test
 import (
 	"testing"
 
-	"github.com/miajio/aide/aide/stream"
+	"github.com/miajio/aide/stream"
 )
 
 // 测试 NewSlice 函数的正常情况
