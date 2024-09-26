@@ -15,7 +15,11 @@ see package package test file
 
 # Package
 
-stream: [github.com/miajio/aide/pkg/stream](github.com/miajio/aide/pkg/stream/)
+stream: [github.com/miajio/aide/pkg/stream](./pkg/stream)
+
+system: [github.com/miajio/aide/pkg/system](./pkg/system)
+
+utils: [github.com/miajio/aide/pkg/utils](./pkg/utils)
 
 # License
 Apache License 2.0
