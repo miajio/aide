@@ -15,6 +15,8 @@ type KV struct {
 }
 
 // NewSlice 创建Slice
+// 若datas非any, 可能出现异常 cannot use us (variable of type []XXX) as []any value in argument to NewSlice
+// 不建议直接使用NewSlice进行初始化结构体数组
 func NewSlice(datas ...any) *Slice {
 	s := &Slice{datas: datas, size: len(datas)}
 	s.equals = s.defaultEquals
@@ -82,6 +84,38 @@ func (s *Slice) ForEach(do func(data any)) *Slice {
 		do(s.datas[i])
 	}
 	return s
+}
+
+// ForEachError 遍历
+// 若有错误, 则会返回错误
+func (s *Slice) ForEachError(do func(data any) error) (*Slice, error) {
+	cpDatas := s.Copy()
+	for i := 0; i < len(s.datas); i++ {
+		if err := do(s.datas[i]); err != nil {
+			return cpDatas, err
+		}
+	}
+	return s, nil
+}
+
+// ItemForEach 遍历
+func (s *Slice) ItemForEach(do func(i int, data any)) *Slice {
+	for i := 0; i < len(s.datas); i++ {
+		do(i, s.datas[i])
+	}
+	return s
+}
+
+// ItemForEachError 遍历
+// 若有错误, 则会返回错误
+func (s *Slice) ItemForEachError(do func(i int, data any) error) (*Slice, error) {
+	cpDatas := s.Copy()
+	for i := 0; i < len(s.datas); i++ {
+		if err := do(i, s.datas[i]); err != nil {
+			return cpDatas, err
+		}
+	}
+	return s, nil
 }
 
 // Sort 排序
