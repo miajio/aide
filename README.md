@@ -63,6 +63,7 @@ func main() {
 	us.Add(User{ID: 3, Name: "Chris", Age: 20, Sex: 2, Berth: b2.Unix()})
 
 	f := excel.New()
+    defer f.Close()
 	f.AddFormatFunc("UnixDateFormatYMD", excel.UnixDateFormatYMD)
 	f.AddFormatFunc("SexToString", func(val any) string {
 		if utils.IsZero(val) || val == 1 {
